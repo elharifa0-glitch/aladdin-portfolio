@@ -538,7 +538,7 @@ const TT=id=>({p:"tiktok",th:id,src:`https://www.tiktok.com/embed/v2/${id}`,url:
 const IG=c=>({p:"instagram",tall:1,th:c,src:`https://www.instagram.com/reel/${c}/embed`,url:`https://www.instagram.com/reel/${c}/`});
 const TL=id=>({p:"tiktok",th:id,src:`https://www.tiktok.com/embed/v2/${id}`,url:`https://www.tiktok.com/@lazizelsham/video/${id}`});
 const FB=id=>({p:"facebook",tall:1,th:"fb"+id,src:`https://www.facebook.com/plugins/video.php?href=${encodeURIComponent("https://www.facebook.com/reel/"+id)}&show_text=false&width=360`,url:`https://www.facebook.com/reel/${id}`});
-const LI=a=>({p:"linkedin",wide:1,src:`https://www.linkedin.com/embed/feed/update/urn:li:activity:${a}`,url:`https://www.linkedin.com/feed/update/urn:li:activity:${a}/`});
+const LI=a=>({p:"linkedin",th:"li"+a,wide:1,src:`https://www.linkedin.com/embed/feed/update/urn:li:activity:${a}`,url:`https://www.linkedin.com/feed/update/urn:li:activity:${a}/`});
 
 const WORK=[
  {g:"2xko",logo:"2xko",v:"1.64M",t:{en:"New Giza students' first look",ar:"طلاب نيو جيزة أول مرة يشوفوها"},...TT("7590024074282142992")},
@@ -568,7 +568,7 @@ const WORK=[
 const GROUPS={all:null,"2xko":"2XKO",qabda:{en:"Qabda",ar:"قبضة"},infinix:"Infinix",lazeez:{en:"Lazeez El Sham",ar:"لذيذ الشام"},b2c:"CompuArt B2C",b2b:"CompuArt B2B",nerve:"Nerve HQ"};
 const LOGOS=["gl","fwz","qabda","redbull","2xko","infinix","mpl","compuart","nervehq","elturkey","lazeez"];
 const TOOLS=["Premiere Pro","Photoshop","ChatGPT","Claude","ElevenLabs","Canva"];
-const TH=new Set(["7702832627035770133","7674953908250365201","7673575762233969936","7686086845595274503","fb1057209213729841","fb1084867821033044","fb1627232165425836","fb2315854579260129","fb2454589875074671","fb1060962209734755","7590024074282142992","7584805008894610708","7634651636220054792","7635258428973124871","7635663145482079505","7635669343023435025","7637529228568792328","DfnLsftAXRM","DffdX0kj3Aj","DdO1ZQnj8eE","Dc3OxrsjQ8Z","Dc1g2-akRE2","DdkEvmDj6Qg","DdRaKk3DDxy","Dd9geEMFNk_","DfB9FoKoOXE","DfRgvEKicse","DfT-ju-CXhk","DfnLpn4jdig","Dfkm3Exil0_"]);
+const TH=new Set(["7581866171146784008","7584501612803001620","7673119208703528200","li7526570401485881344","li7525482532868521984","li7523670992246976512","li7522946229237088256","li7520756350897774592","li7520032666377830400","li7518220315320066049","li7517494716297441280","li7515682868812132353","7702832627035770133","7674953908250365201","7673575762233969936","7686086845595274503","fb1057209213729841","fb1084867821033044","fb1627232165425836","fb2315854579260129","fb2454589875074671","fb1060962209734755","7590024074282142992","7584805008894610708","7634651636220054792","7635258428973124871","7635663145482079505","7635669343023435025","7637529228568792328","DfnLsftAXRM","DffdX0kj3Aj","DdO1ZQnj8eE","Dc3OxrsjQ8Z","Dc1g2-akRE2","DdkEvmDj6Qg","DdRaKk3DDxy","Dd9geEMFNk_","DfB9FoKoOXE","DfRgvEKicse","DfT-ju-CXhk","DfnLpn4jdig","Dfkm3Exil0_"]);
 const PLAY='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4.5v15l12-7.5z"/></svg>';
 
 let lang="en",filter="all";
