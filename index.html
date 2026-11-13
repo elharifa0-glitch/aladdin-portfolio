@@ -149,6 +149,10 @@ html[lang="en"] .big-num b{font-stretch:62%}
 .reel{position:relative;aspect-ratio:9/16;border-radius:14px;overflow:hidden;background:var(--panel);border:1px solid var(--line);display:flex;flex-direction:column;justify-content:space-between;padding:14px;text-align:start;transition:border-color .25s,transform .25s;isolation:isolate;width:100%}
 .reel::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(233,168,76,.06),transparent 40%,rgba(0,0,0,.6))}
 .reel:hover{border-color:var(--tungsten);transform:translateY(-3px)}
+.reel.has-th{background:#000 var(--th) center/cover no-repeat}
+.reel.has-th::after{background:linear-gradient(180deg,rgba(0,0,0,.45),transparent 25%,transparent 50%,rgba(0,0,0,.85))}
+.reel.has-th .plat{color:#ddd}
+.reel.has-th .play{background:rgba(0,0,0,.35);backdrop-filter:blur(4px)}
 .reel .top{display:flex;justify-content:space-between;align-items:center}
 .reel .chipl{width:30px;height:30px;border-radius:8px;object-fit:cover;border:1px solid var(--line)}
 .reel .plat{font-family:var(--mono);font-size:10px;letter-spacing:.1em;color:var(--mute);text-transform:uppercase}
@@ -513,8 +517,8 @@ const JOBS=[
   pts:{en:["Photographed the MPL event"],ar:["تصوير فوتوغرافي لإيفنت MPL"]},tags:["Photography","Esports"]}
 ];
 
-const TT=id=>({p:"tiktok",src:`https://www.tiktok.com/embed/v2/${id}`,url:`https://www.tiktok.com/@fwz_esports/video/${id}`});
-const IG=c=>({p:"instagram",tall:1,src:`https://www.instagram.com/reel/${c}/embed`,url:`https://www.instagram.com/reel/${c}/`});
+const TT=id=>({p:"tiktok",th:id,src:`https://www.tiktok.com/embed/v2/${id}`,url:`https://www.tiktok.com/@fwz_esports/video/${id}`});
+const IG=c=>({p:"instagram",tall:1,th:c,src:`https://www.instagram.com/reel/${c}/embed`,url:`https://www.instagram.com/reel/${c}/`});
 const LI=a=>({p:"linkedin",wide:1,src:`https://www.linkedin.com/embed/feed/update/urn:li:activity:${a}`,url:`https://www.linkedin.com/feed/update/urn:li:activity:${a}/`});
 
 const WORK=[
@@ -534,6 +538,7 @@ const WORK=[
 const GROUPS={all:null,"2xko":"2XKO",qabda:{en:"Qabda",ar:"قبضة"},infinix:"Infinix",b2c:"CompuArt B2C",b2b:"CompuArt B2B",nerve:"Nerve HQ"};
 const LOGOS=["gl","fwz","qabda","redbull","2xko","infinix","mpl","compuart","nervehq","elturkey","lazeez"];
 const TOOLS=["Premiere Pro","Photoshop","ChatGPT","Claude","ElevenLabs","Canva"];
+const TH=new Set(["7590024074282142992","7584805008894610708","7634651636220054792","7635258428973124871","7635663145482079505","7635669343023435025","7637529228568792328","DfnLsftAXRM","DffdX0kj3Aj","DdO1ZQnj8eE","Dc3OxrsjQ8Z","Dc1g2-akRE2","DdkEvmDj6Qg","DdRaKk3DDxy","Dd9geEMFNk_","DfB9FoKoOXE","DfRgvEKicse","DfT-ju-CXhk","DfnLpn4jdig","Dfkm3Exil0_"]);
 const PLAY='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4.5v15l12-7.5z"/></svg>';
 
 let lang="en",filter="all";
@@ -542,7 +547,7 @@ const $=s=>document.querySelector(s);
 const nm=x=>typeof x==="string"?x:x[lang];
 
 function reelHTML(w,i){
-  return `<button class="reel${w.wide?" wide":""}" type="button" data-i="${i}" aria-label="${T[lang].play}: ${w.t[lang]}">
+  return `<button class="reel${w.wide?" wide":""}${w.th&&TH.has(w.th)?" has-th":""}" type="button" data-i="${i}"${w.th&&TH.has(w.th)?` style="--th:url(assets/thumbs/${w.th}.jpg)"`:""} aria-label="${T[lang].play}: ${w.t[lang]}">
     <div class="top"><img class="chipl" src="assets/${w.logo}.jpg" alt=""><span class="plat">${w.p}</span></div>
     <span class="play">${PLAY}</span>
     <div>${w.v?`<div class="views">${w.v}<small>${T[lang].views}</small></div>`:""}<div class="ttl">${w.t[lang]}</div></div>
