@@ -166,6 +166,10 @@ html[lang="en"] .reel .views{font-stretch:70%}
 .exp{display:grid;gap:14px}
 .job{display:grid;grid-template-columns:76px 1fr auto;gap:24px;align-items:start;padding:28px;border:1px solid var(--line);border-radius:6px;background:linear-gradient(180deg,var(--panel),transparent);transition:border-color .25s}
 .job:hover{border-color:#3a3a40}
+.job{scroll-margin-top:90px}
+.job.flash{animation:flash 1.8s ease}
+@keyframes flash{0%,40%{border-color:var(--tungsten);box-shadow:0 0 0 1px var(--tungsten),0 0 40px rgba(233,168,76,.18)}100%{border-color:var(--line);box-shadow:none}}
+.logo-tile{cursor:pointer}
 .job img{width:76px;height:76px;border-radius:16px;object-fit:cover;border:1px solid var(--line);background:#fff}
 .job.wide-logo img{object-fit:contain;background:#fff;padding:4px}
 .job img[src$="redbull.jpg"]{object-fit:contain;background:#fff}
@@ -302,7 +306,7 @@ dialog::backdrop{background:rgba(5,5,6,.9);backdrop-filter:blur(6px)}
 
       <article class="case reveal">
         <div class="case-info">
-          <div class="case-logos"><img src="assets/qabda.jpg" alt="Qabda"><img src="assets/redbull.jpg" alt="Red Bull"></div>
+          <div class="case-logos"><img src="assets/qabda.jpg" alt="Qabda"></div>
           <span class="mono" data-t="c2Tag"></span>
           <h3 data-t="c2Title"></h3>
           <p data-t="c2Text"></p>
@@ -419,7 +423,7 @@ en:{
  views5:"views · 3 interviews + 2 coverage cuts",
  c1Steps:["Campus visits, one university at a time","On-camera student interviews","Fast vertical edits with captions","Paid push across TikTok"],
  c2Tag:"Qabda · Fighting-games event",c2Title:"Qabda",
- c2Text:"A full campaign for Qabda, Egypt's biggest fighting-games event at One Golden Square, with Red Bull as main partner. I co-wrote the sketches, shot and edited the promo series, then filmed inside the event: game explainers and player interviews.",
+ c2Text:"A full campaign for Qabda, Egypt's biggest fighting-games event at One Golden Square. I co-wrote the sketches, shot and edited the promo series, then filmed inside the event: game explainers and player interviews.",
  views27:"views · 27 videos",
  c2Steps:["Comedy sketch series to sell tickets","Shooting and editing every promo","In-event explainers and interviews"],
  c3Tag:"Infinix · University activation",c3Title:"Infinix Note 50s",
@@ -453,7 +457,7 @@ ar:{
  views5:"مشاهدة · 3 إنترفيوهات و2 كافرينج",
  c1Steps:["زيارة الجامعات واحدة واحدة","إنترفيوهات مع الطلبة قدام الكاميرا","مونتاج سريع بكابشن","إعلانات ممولة على تيك توك"],
  c2Tag:"قبضة · إيفنت ألعاب القتال",c2Title:"قبضة",
- c2Text:"كامبين كاملة لإيفنت قبضة، أكبر إيفنت ألعاب قتال في مصر، في One Golden Square، والراعي الرئيسي Red Bull. شاركت في أفكار الاسكتشات، وصورت ومنتجت كل البرومو، وبعدها صورت جوه الإيفنت شرح للعب وإنترفيوهات.",
+ c2Text:"كامبين كاملة لإيفنت قبضة، أكبر إيفنت ألعاب قتال في مصر، في One Golden Square. شاركت في أفكار الاسكتشات، وصورت ومنتجت كل البرومو، وبعدها صورت جوه الإيفنت شرح للعب وإنترفيوهات.",
  views27:"مشاهدة · 27 فيديو",
  c2Steps:["سلسلة اسكتشات كوميدي لبيع التذاكر","تصوير ومونتاج كل البرومو","شرح وإنترفيوهات جوه الإيفنت"],
  c3Tag:"Infinix · فعاليات الجامعات",c3Title:"Infinix Note 50s",
@@ -501,9 +505,9 @@ const JOBS=[
  {logo:"nervehq",wide:1,now:1,name:{en:"Nerve HQ",ar:"Nerve HQ"},f:null,url:"https://www.linkedin.com/company/nervehq",
   role:{en:"Video production for a B2B AI platform",ar:"إنتاج فيديو لمنصة AI للشركات"},
   pts:{en:["Ideas, scripts, filming and editing","LinkedIn video series for business decision-makers"],ar:["أفكار وسكريبتات وتصوير ومونتاج","سلسلة فيديوهات لينكدإن لأصحاب القرار في الشركات"]},tags:["LinkedIn","B2B","SaaS"]},
- {logo:"redbull",name:{en:"Red Bull",ar:"Red Bull"},f:null,url:null,
-  role:{en:"Event coverage",ar:"تغطية إيفنتات"},
-  pts:{en:["Filmed and edited coverage of Red Bull gaming events"],ar:["تصوير ومونتاج تغطية إيفنتات Red Bull للجيمنج"]},tags:["Events","Video"]},
+ {logo:"redbull",name:{en:"Red Bull",ar:"Red Bull"},f:null,url:null,agency:1,
+  role:{en:"Event photographer",ar:"فوتوجرافر إيفنتات"},
+  pts:{en:["Photographed Red Bull gaming events"],ar:["تصوير فوتوغرافي لإيفنتات Red Bull للجيمنج"]},tags:["Photography","Events"]},
  {logo:"mpl",name:{en:"MPL MENA · Mobile Legends",ar:"MPL MENA · موبايل ليجندز"},f:null,url:null,
   role:{en:"Event photographer",ar:"فوتوجرافر الإيفنت"},
   pts:{en:["Photographed the MPL event"],ar:["تصوير فوتوغرافي لإيفنت MPL"]},tags:["Photography","Esports"]}
@@ -557,10 +561,10 @@ function render(){
   pick.infinix=[WORK.find(w=>w.g==="infinix")];
   document.querySelectorAll("[data-reels]").forEach(el=>{el.innerHTML=pick[el.dataset.reels].map(w=>reelHTML(w,WORK.indexOf(w))).join("")});
   // marquee
-  const tiles=LOGOS.map(l=>`<div class="logo-tile${l==="nervehq"?" wide":""}"><img src="assets/${l}.jpg" alt="${l}"></div>`).join("");
-  $("#track").innerHTML=tiles+tiles.replace(/alt="[^"]*"/g,'alt="" aria-hidden="true"');
+  const tiles=LOGOS.map(l=>`<a class="logo-tile${l==="nervehq"?" wide":""}" href="#job-${l}" data-jump="${l}"><img src="assets/${l}.jpg" alt="${l}"></a>`).join("");
+  $("#track").innerHTML=tiles+tiles.replace(/alt="[^"]*"/g,'alt=""').replace(/<a /g,'<a tabindex="-1" aria-hidden="true" ');
   // jobs
-  $("#exp").innerHTML=JOBS.map(j=>`<article class="job reveal in${j.wide?" wide-logo":""}">
+  $("#exp").innerHTML=JOBS.map(j=>`<article class="job reveal in${j.wide?" wide-logo":""}" id="job-${j.logo}">
     <img src="assets/${j.logo}.jpg" alt="${j.name.en}">
     <div><h3>${j.name[lang]}</h3><div class="role">${j.role[lang]}</div><ul>${j.pts[lang].map(p=>`<li>${p}</li>`).join("")}</ul>
       <div class="tags">${j.tags.map(x=>`<span class="pill">${x}</span>`).join("")}</div>${j.agency?`<p class="agency">${t.agency}</p>`:""}</div>
@@ -575,6 +579,7 @@ function render(){
 }
 
 document.addEventListener("click",e=>{
+  const jp=e.target.closest("[data-jump]");if(jp){e.preventDefault();const el=document.getElementById("job-"+jp.dataset.jump);if(el){el.scrollIntoView({behavior:"smooth",block:"center"});el.classList.remove("flash");void el.offsetWidth;el.classList.add("flash")}return}
   const f=e.target.closest("[data-f]");if(f){filter=f.dataset.f;render();return}
   const pl=e.target.closest("[data-play]");if(pl){openPlayer(WORK[+pl.dataset.play]);return}
   const r=e.target.closest(".reel");if(r){openPlayer(WORK[+r.dataset.i])}
